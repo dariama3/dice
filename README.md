@@ -1,4 +1,4 @@
-# dice
+# Dice
 
 ## Project setup
 ```
