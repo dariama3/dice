@@ -2,21 +2,25 @@
   <div class="dice">
     <button class="dice__button" type="button" title="Roll the Dice!" @click="roll">
       <DiceIcon :value="diceValue" />
+      <span class="dice__label" v-if="!diceValue">Play</span>
     </button>
+    <DiceResult :value="diceValue" />
   </div>
 </template>
 
 <script>
 import DiceIcon from './Dice/DiceIcon';
+import DiceResult from './Dice/DiceResult';
 
 export default {
   name: 'Dice',
   components: {
-    DiceIcon
+    DiceIcon,
+    DiceResult
   },
   data () {
     return {
-      diceValue: undefined
+      diceValue: 0
     };
   },
   methods: {
@@ -31,6 +35,7 @@ export default {
 .dice {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   min-height: 100vh;
 
@@ -39,6 +44,18 @@ export default {
     border: none;
     cursor: pointer;
     max-width: 300px;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+  }
+
+  &__label {
+    font-size: 5rem;
+    left: 50%;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>
