@@ -26,6 +26,8 @@ export default {
   methods: {
     roll () {
       this.diceValue = Math.floor(Math.random() * 6) + 1;
+
+      window.navigator.vibrate(100);
     }
   }
 };
