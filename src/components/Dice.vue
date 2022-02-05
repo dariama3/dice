@@ -11,6 +11,7 @@
 <script>
 import DiceIcon from './Dice/DiceIcon';
 import DiceResult from './Dice/DiceResult';
+import Shake from 'shake.js';
 
 export default {
   name: 'Dice',
@@ -28,7 +29,22 @@ export default {
       this.diceValue = Math.floor(Math.random() * 6) + 1;
 
       window.navigator.vibrate(100);
+    },
+    initShake () {
+      const myShakeEvent = new Shake({
+        threshold: 10
+      });
+
+      myShakeEvent.start();
+
+      window.addEventListener('shake', this.roll);
     }
+  },
+  mounted () {
+    this.initShake();
+  },
+  unmounted () {
+    window.removeEventListener('shake', this.roll);
   }
 };
 </script>
